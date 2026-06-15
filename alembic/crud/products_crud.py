@@ -30,7 +30,12 @@ def deactivate_product(session: Session, product_id: int):
         return None
     product.active = False
 
-    session.commit()
+    try: 
+        session.commit()
+    except IntegrityError as e:
+        session.rollback()
+        print(f"Erreur : {e.orig}")
+        
     session.refresh(product)
 
     return product
@@ -41,7 +46,12 @@ def delete_product(session: Session, product_id: int):
     if not product:
         return False
     
-    session.delete(product)
-    session.commit()
-
+    try:
+        session.delete(product)
+        session.commit()
+    except IntegrityError as e:
+        session.rollback()
+        print(f"Erreur : {e.orig}")
+        return False
+    
     return True
