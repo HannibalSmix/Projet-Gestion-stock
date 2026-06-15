@@ -1,14 +1,13 @@
 from logging.config import fileConfig
+from dotenv import load_dotenv
+import os
+from db.database import Base
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
 
-from dotenv import load_dotenv
-import os
-
-from db.database import Base
 from models.products import Products
 from models.receipt import Receipt
 from models.receiptline import ReceiptLine
@@ -21,16 +20,23 @@ from models.warehouse import Warehouse
 
 load_dotenv()
 
+DATABASE_URL = (
+    f"postgresql+psycopg://"
+    f"{os.getenv('POSTGRES_USER')}:"
+    f"{os.getenv('POSTGRES_PASSWORD')}@"
+    f"{os.getenv('POSTGRES_HOST')}:"
+    f"{os.getenv('POSTGRES_PORT')}/"
+    f"{os.getenv('POSTGRES_DB')}"
+)
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
 # Récupération de l'URL depuis le .env ou reconstruction dynamique
-db_url = os.getenv("DATABASE_URL") 
 
 # Injection dynamique de l'URL dans la configuration d'Alembic
-config.set_main_option("sqlalchemy.url", db_url)
+config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

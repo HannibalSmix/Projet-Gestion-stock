@@ -1,6 +1,6 @@
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Identity, Enum, ForeignKey, Datetime
+from sqlalchemy import Identity, Enum, ForeignKey, DateTime
 from typing import TYPE_CHECKING
 import enum
 from datetime import datetime
@@ -24,7 +24,7 @@ class Receipt(Base):
     supplier_id: Mapped[int] = mapped_column(ForeignKey("supplier.id"), nullable=False)
     warehouse_id: Mapped[int] = mapped_column(ForeignKey("warehouse.id"), nullable=False)
     status: Mapped[Status] = mapped_column(Enum(Status), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(Datetime, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
 
     receiptline: Mapped["ReceiptLine"] = relationship(
         "ReceiptLine",

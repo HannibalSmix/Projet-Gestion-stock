@@ -1,6 +1,6 @@
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Identity, Enum, Datetime, ForeignKey
+from sqlalchemy import Identity, Enum, DateTime, ForeignKey
 from typing import TYPE_CHECKING
 import enum
 from datetime import datetime
@@ -28,7 +28,7 @@ class Transfert(Base):
         ForeignKey("warehouse.id"), 
         nullable=False)
     status: Mapped[Status] = mapped_column(Enum(Status), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(Datetime, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
 
     source_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
