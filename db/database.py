@@ -16,5 +16,6 @@ DATABASE_URL = (
 
 engine = create_engine(DATABASE_URL, echo=True)
 
+
 class Base(DeclarativeBase):
     pass
