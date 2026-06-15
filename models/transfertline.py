@@ -1,19 +1,11 @@
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Integer, String, Identity, Enum, Datetime, ForeignKey
+from sqlalchemy import Integer, Identity, ForeignKey
 from typing import TYPE_CHECKING
-import enum
-from datetime import datetime
 
-# if TYPE_CHECKING:
-#     from profil import Profiles
-#     from post import Posts
-
-
-class Status(enum.Enum):
-    DRAFT = 1
-    DONE = 2
-    CANCELLED = 3
+if TYPE_CHECKING:
+    from transfert import Transfert
+    from products import Products
 
 
 class TransfertLine(Base):
@@ -27,6 +19,8 @@ class TransfertLine(Base):
         ForeignKey("products.id"), 
         nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    
  
     def __repr__(self):
         return (
