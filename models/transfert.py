@@ -32,13 +32,11 @@ class Transfert(Base):
 
     source_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="transfert",
-        uselist=False
+        back_populates="transfert"
     )
     destination_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="transfert",
-        uselist=False
+        back_populates="transfert"
     )
     transfertline: Mapped["TransfertLine"] = relationship(
         "TransfertLine",

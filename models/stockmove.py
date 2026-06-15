@@ -38,18 +38,15 @@ class Stockmove(Base):
    
     source_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="stockmove",
-        uselist=False
+        back_populates="stockmove"
     )
     destination_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="stockmove",
-        uselist=False
+        back_populates="stockmove"
     )
     product: Mapped["Products"] = relationship(
         "Products",
-        back_populates="stockmove",
-        uselist=False
+        back_populates="stockmove"
     )
 
     def __repr__(self):

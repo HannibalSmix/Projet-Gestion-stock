@@ -22,13 +22,11 @@ class TransfertLine(Base):
 
     transfer: Mapped["Transfert"] = relationship(
         "Transfert",
-        back_populates="transfertline",
-        uselist=False
+        back_populates="transfertline"
     )
     product: Mapped["Products"] = relationship(
         "Products",
-        back_populates="transfertline",
-        uselist=False
+        back_populates="transfertline"
     )
  
     def __repr__(self):

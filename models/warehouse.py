@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from transfert import Transfert
     from stockmove import Stockmove
     from stocklevel import Stocklevel
+    from receipt import Receipt
 
 
 class Warehouse(Base):
@@ -37,6 +38,10 @@ class Warehouse(Base):
     stocklevel: Mapped["Stocklevel"] = relationship(
         "Stocklevel",
         back_populates="warehouse"
+    )
+    receipt: Mapped["Receipt"] = relationship(
+        "Receipt",
+        back_populates="Warehouse"
     )
 
     def __repr__(self):

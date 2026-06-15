@@ -17,9 +17,9 @@ class Supplier(Base):
 
     receipt: Mapped["Receipt"] = relationship(
         "Receipt",
-        back_populates="supplier",
-        uselist=False
+        back_populates="supplier"
     )
+
     
     def __repr__(self):
         return f"name = {self.name}, email= {self.email}"

@@ -33,14 +33,12 @@ class Receipt(Base):
 
     supplier: Mapped["Supplier"] = relationship(
         "Supplier",
-        back_populates="receipt",
-        uselist=False
+        back_populates="receipt"
     )
 
     warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="receipt",
-        uselist=False
+        back_populates="receipt"
     )
 
     def __repr__(self):

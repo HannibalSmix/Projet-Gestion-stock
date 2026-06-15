@@ -18,13 +18,11 @@ class ReceiptLine(Base):
 
     receipt: Mapped["Receipt"] = relationship(
         "Receipt",
-        back_populates="receiptline",
-        uselist=False
+        back_populates="receiptline"
     )
     product: Mapped["Products"] = relationship(
         "Products",
-        back_populates="receiptline",
-        uselist=False
+        back_populates="receiptline"
     )
 
     def __repr__(self):
