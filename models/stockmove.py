@@ -1,15 +1,15 @@
 
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import ForeignKey, String, Identity, ForeignKey
+from sqlalchemy import ForeignKey, Identity, ForeignKey
 from typing import TYPE_CHECKING
 import enum
 from sqlalchemy import Enum
 from datetime import datetime
 
-# if TYPE_CHECKING:
-#     from profil import Profiles
-#     from post import Posts
+if TYPE_CHECKING:
+    from warehouse import Warehouse
+    from products import Products
 
 
 class Status(enum.Enum):
@@ -17,10 +17,12 @@ class Status(enum.Enum):
     DONE = 2
     CANCELLED = 3
 
+
 class Type(enum.Enum):
     IN = 1
     OUT = 2
     TRANSFER = 3
+
 
 class Stockmove(Base):
     __tablename__ = "stockmove"
@@ -33,6 +35,22 @@ class Stockmove(Base):
     type: Mapped[Type] = mapped_column(Enum(Type), nullable=False)
     status: Mapped[Status] = mapped_column(Enum(Status), nullable=False)
     created_at: Mapped[datetime] = mapped_column()
+   
+    source_warehouse: Mapped["Warehouse"] = relationship(
+        "Warehouse",
+        back_populates="stockmove",
+        uselist=False
+    )
+    destination_warehouse: Mapped["Warehouse"] = relationship(
+        "Warehouse",
+        back_populates="stockmove",
+        uselist=False
+    )
+    product: Mapped["Products"] = relationship(
+        "Products",
+        back_populates="stockmove",
+        uselist=False
+    )
 
     def __repr__(self):
         return (

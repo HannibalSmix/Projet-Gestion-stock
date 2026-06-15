@@ -3,9 +3,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, Identity, ForeignKey
 from typing import TYPE_CHECKING
 
-# if TYPE_CHECKING:
-#     from profil import Profiles
-#     from post import Posts
+if TYPE_CHECKING:
+    from receipt import Receipt
+    from products import Products
 
 
 class ReceiptLine(Base):
@@ -15,6 +15,17 @@ class ReceiptLine(Base):
     receipt_id: Mapped[int] = mapped_column(ForeignKey("receipt.id"), nullable=False)
     product_id: Mapped[int] = mapped_column(ForeignKey("product.id"), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    receipt: Mapped["Receipt"] = relationship(
+        "Receipt",
+        back_populates="receiptline",
+        uselist=False
+    )
+    product: Mapped["Products"] = relationship(
+        "Products",
+        back_populates="receiptline",
+        uselist=False
+    )
 
     def __repr__(self):
         return (

@@ -20,7 +20,16 @@ class TransfertLine(Base):
         nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
 
-    
+    transfer: Mapped["Transfert"] = relationship(
+        "Transfert",
+        back_populates="transfertline",
+        uselist=False
+    )
+    product: Mapped["Products"] = relationship(
+        "Products",
+        back_populates="transfertline",
+        uselist=False
+    )
  
     def __repr__(self):
         return (

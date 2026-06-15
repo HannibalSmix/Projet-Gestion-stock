@@ -4,9 +4,11 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Identity
 from typing import TYPE_CHECKING
 
-# if TYPE_CHECKING:
-#     from profil import Profiles
-#     from post import Posts
+if TYPE_CHECKING:
+    from transfertline import TransfertLine
+    from stockmove import Stockmove
+    from stocklevel import Stocklevel
+    from receiptline import ReceiptLine
 
 
 class Products(Base):
@@ -17,5 +19,29 @@ class Products(Base):
     sku: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
     active: Mapped[bool] = mapped_column(default=True)
 
+    transfertline: Mapped["TransfertLine"] = relationship(
+        "TransfertLine",
+        back_populates="products"
+    )
+
+    stockmove: Mapped["Stockmove"] = relationship(
+        "Stockmove",
+        back_populates="products"
+    )
+
+    stocklevel: Mapped["Stocklevel"] = relationship(
+        "Stocklevel", 
+        back_populates="products"
+    )
+
+    receiptline: Mapped["ReceiptLine"] = relationship(
+        "ReceiptLine",
+        back_populates="products"
+    )
+
     def __repr__(self):
-        return f"name = {self.name}, sku= {self.sku}, active = {self.active}"
+        return (
+            f"name = {self.name},"
+            f"sku = {self.sku},"
+            f"active = {self.active}"
+        )

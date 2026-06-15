@@ -4,9 +4,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Identity
 from typing import TYPE_CHECKING
 
-# if TYPE_CHECKING:
-#     from profil import Profiles
-#     from post import Posts
+if TYPE_CHECKING:
+    from receipt import Receipt
 
 
 class Supplier(Base):
@@ -16,5 +15,11 @@ class Supplier(Base):
     name: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
     email: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
 
+    receipt: Mapped["Receipt"] = relationship(
+        "Receipt",
+        back_populates="supplier",
+        uselist=False
+    )
+    
     def __repr__(self):
         return f"name = {self.name}, email= {self.email}"

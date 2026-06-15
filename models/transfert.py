@@ -1,13 +1,14 @@
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Identity, Enum, Datetime, ForeignKey
+from sqlalchemy import Identity, Enum, Datetime, ForeignKey
 from typing import TYPE_CHECKING
 import enum
 from datetime import datetime
 
-# if TYPE_CHECKING:
-#     from profil import Profiles
-#     from post import Posts
+
+if TYPE_CHECKING:
+    from warehouse import Warehouse
+    from transfertline import TransfertLine
 
 
 class Status(enum.Enum):
@@ -28,6 +29,21 @@ class Transfert(Base):
         nullable=False)
     status: Mapped[Status] = mapped_column(Enum(Status), nullable=False)
     created_at: Mapped[datetime] = mapped_column(Datetime, nullable=False)
+
+    source_warehouse: Mapped["Warehouse"] = relationship(
+        "Warehouse",
+        back_populates="transfert",
+        uselist=False
+    )
+    destination_warehouse: Mapped["Warehouse"] = relationship(
+        "Warehouse",
+        back_populates="transfert",
+        uselist=False
+    )
+    transfertline: Mapped["TransfertLine"] = relationship(
+        "TransfertLine",
+        back_populates="transfer"
+    )
 
     def __repr__(self):
         return (
