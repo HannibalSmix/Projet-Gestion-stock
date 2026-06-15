@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 #     from profil import Profiles
 #     from post import Posts
 
+
 class ReceiptLine(Base):
     __tablename__ = "receiptline"
 
@@ -21,9 +22,4 @@ class ReceiptLine(Base):
             f"product_id = {self.product_id},"
             f"quantity = {self.quantity}"
         )
-
-
-
-
-
 
