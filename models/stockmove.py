@@ -5,7 +5,7 @@ from sqlalchemy import ForeignKey, String, Identity, ForeignKey
 from typing import TYPE_CHECKING
 import enum
 from sqlalchemy import Enum
-import datetime
+from datetime import datetime
 
 # if TYPE_CHECKING:
 #     from profil import Profiles
@@ -35,10 +35,12 @@ class Stockmove(Base):
     created_at: Mapped[datetime] = mapped_column()
 
     def __repr__(self):
-        return (f"product_id = {self.product_id}, 
-            quantity = {self.quantity}, 
-            source_warehouse_id = {self.source_warehouse_id}, 
-            destination_warehouse_id = {self.destination_warehouse_id}, 
-            type = {self.type}, 
-            status = {self.status}, 
-            created_at = {self.created_at}")
+        return (
+            f"product_id = {self.product_id},"
+            f"quantity = {self.quantity}, "
+            f"source_warehouse_id = {self.source_warehouse_id},"
+            f"destination_warehouse_id = {self.destination_warehouse_id}," 
+            f"type = {self.type},"
+            f"status = {self.status},"
+            f"created_at = {self.created_at}"
+            )
