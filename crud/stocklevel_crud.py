@@ -41,7 +41,7 @@ def get_stock_by_product_and_warehouse(session: Session, product_id: int, wareho
     return session.execute(stmt).scalar_one_or_none()
 
 
-def update_stock_quantity(session: Session, stocklevel_id: int, quantity: int):
+def update_quantity(session: Session, stocklevel_id: int, quantity: int):
     stmt = select(Stocklevel).where(Stocklevel.id == stocklevel_id)
     stock_level = session.execute(stmt).scalar_one_or_none()
     if not stock_level:

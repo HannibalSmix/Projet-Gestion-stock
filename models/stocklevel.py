@@ -1,7 +1,7 @@
 
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Identity, ForeignKey, UniqueConstraint
+from sqlalchemy import Integer, Identity, ForeignKey, UniqueConstraint, CheckConstraint
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -15,10 +15,11 @@ class Stocklevel(Base):
     id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True)
     product_id: Mapped[int] = mapped_column(ForeignKey("products.id"), nullable=False)
     warehouse_id: Mapped[int] = mapped_column(ForeignKey("warehouse.id"), nullable=False)
-    quantity: Mapped[int] = mapped_column(nullable=False)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False)
 
     __table_args__ = (
         UniqueConstraint("product_id", "warehouse_id"),
+        CheckConstraint("quantity >= 0", name="check_quantity_positive"),
     )
 
     product: Mapped["Products"] = relationship(

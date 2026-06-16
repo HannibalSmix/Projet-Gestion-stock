@@ -1,6 +1,6 @@
 from db.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Integer, Identity, ForeignKey
+from sqlalchemy import Integer, Identity, ForeignKey, UniqueConstraint, CheckConstraint
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -19,6 +19,12 @@ class TransfertLine(Base):
         ForeignKey("products.id"), 
         nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint("transfer_id", "product_id"),
+        CheckConstraint("quantity >= 0", name="check_quantity_positive"),
+    )
+
 
     transfer: Mapped["Transfert"] = relationship(
         "Transfert",
