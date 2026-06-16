@@ -1,11 +1,10 @@
-
-from db.database import Base
+from db.base import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Identity
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from receipt import Receipt
+    from models.receipt import Receipt
 
 
 class Supplier(Base):
