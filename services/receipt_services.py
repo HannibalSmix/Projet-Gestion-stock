@@ -15,7 +15,7 @@ def validate_receipt(session: Session, receipt_id: int):
         return False
     
     if receipt.status != Status.DRAFT:
-        print(f"Receipt {receipt.id} has a status: {receipt.status}")
+        print(f"Receipt {receipt.id} has status: {receipt.status}, cannot be validated")
         return False
 
     receipt_lines = get_lines_by_receipt(Session, receipt_id)
@@ -53,3 +53,18 @@ def validate_receipt(session: Session, receipt_id: int):
     print(f"Receipt {receipt.id} has been validated")
     return True
 
+
+def cancel_receipt(session: Session, receipt_id: int):
+    
+    receipt = get_receipt(Session, receipt_id)
+    if not receipt:
+        print(f'No receipt found with id = {receipt_id}')
+        return False
+    
+    if receipt.status != Status.DRAFT:
+        print(f"Receipt {receipt.id} has a status: {receipt.status} and cannot be cancelled")
+        return False    
+
+    update_status(session, receipt_id, Status.CANCELLED)
+    print(f"Receipt {receipt.id} has been cancelled")
+    return True

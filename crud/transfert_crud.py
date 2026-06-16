@@ -56,3 +56,16 @@ def get_transferts_by_destination_warehouse(session: Session, warehouse_id: int)
         Transfert.destination_warehouse_id == warehouse_id)
     return session.execute(stmt).scalars().all()
 
+
+def update_status(session: Session, transfert_id: int, status: Status):
+    transfert = get_transfert(session, transfert_id)
+    if not transfert:
+        return None
+    transfert.status = status
+    try:
+        session.commit()
+    except IntegrityError as e:
+        session.rollback()
+        print(f"Erreur : {e.orig}")
+    session.refresh(transfert)
+    return transfert
