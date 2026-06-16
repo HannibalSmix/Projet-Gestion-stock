@@ -6,7 +6,6 @@ from models.warehouse import Warehouse
 
 
 def create_warehouse(session: Session, name: str, location: str):
-    
     warehouse = Warehouse(name=name, location=location)
     try:
         session.add(warehouse)
@@ -23,7 +22,6 @@ def get_warehouse(session: Session, warehouse_id: int):
     return session.execute(stmt).scalar_one_or_none()
 
 
-
 def get_warehouse_by_name(session: Session, name: str):
     stmt = select(Warehouse).where(Warehouse.name == name)
     return session.execute(stmt).scalar_one_or_none()
@@ -37,5 +35,3 @@ def get_warehouse_by_location(session: Session, location: str):
 def get_all_warehouses(session: Session):
     stmt = select(Warehouse)
     return session.execute(stmt).scalars().all()
-
-
