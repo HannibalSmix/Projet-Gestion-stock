@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from models.products import Products
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import select
 
 def create_product(session: Session, name: str, sku: str, active: bool = True):
 
@@ -18,14 +19,16 @@ def create_product(session: Session, name: str, sku: str, active: bool = True):
     return product
 
 def get_product(session: Session, product_id: int):
-    return session.get(Products, product_id)
+    stmt = select(Products).where(Products.id == product_id)
+    return session.execute(stmt).scalar_one_or_none()
 
 def get_product_by_sku(session: Session, sku: str):
-    return session.query(Products).filter(Products.sku == sku).first()
+    stmt = select(Products).where(Products.sku == sku)
+    return session.execute(stmt).scalar_one_or_none()
 
 def deactivate_product(session: Session, product_id: int):
     
-    product = session.get(Products, product_id)
+    product = get_product(Session, product_id)
     if not product:
         return None
     product.active = False
@@ -42,7 +45,7 @@ def deactivate_product(session: Session, product_id: int):
 
 def delete_product(session: Session, product_id: int):
 
-    product = session.get(Products, product_id)
+    product = get_product(Session, product_id)
     if not product:
         return False
     
