@@ -25,6 +25,7 @@ def create_receipt(session: Session, supplier_id: int, warehouse_id: int, status
     session.refresh(receipt)
     return receipt
 
+
 def get_receipt(session: Session, receipt_id: int):
     stmt = select(Receipt).where(Receipt.id == receipt_id)
     return session.execute(stmt).scalar_one_or_none()

@@ -20,6 +20,7 @@ def create_receipt_line(session: Session, receipt_id: int, product_id: int, quan
     session.refresh(receipt_line)
     return receipt_line
 
+
 def get_receipt_line(session: Session, receipt_line_id: int):
     stmt = select(ReceiptLine).where(ReceiptLine.id == receipt_line_id)
     return session.execute(stmt).scalar_one_or_none()
