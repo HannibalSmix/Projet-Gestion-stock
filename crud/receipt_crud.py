@@ -39,3 +39,17 @@ def get_receipts_by_supplier(session: Session, supplier_id: int):
 def get_receipts_by_warehouse(session: Session, warehouse_id: int) -> list[Receipt]:
     stmt = select(Receipt).where(Receipt.warehouse_id == warehouse_id)
     return session.execute(stmt).scalars().all()
+
+
+def update_status(session: Session, receipt_id: int, status: Status):
+    receipt = get_receipt(session, receipt_id) 
+    if not receipt:
+        return None
+    receipt.status = status
+    try:
+        session.commit()
+    except IntegrityError as e:
+        session.rollback()
+        print(f"Erreur : {e.orig}")
+    session.refresh(receipt)
+    return receipt
