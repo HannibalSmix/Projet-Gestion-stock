@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
+from sqlalchemy import select
 
 from models.stockmove import Stockmove, Status, Type
 
@@ -36,21 +37,27 @@ def create_stock_move(
 
 
 def get_stock_move(session: Session, stock_move_id: int):
-    return session.get(Stockmove, stock_move_id)
+    stmt = select(Stockmove).where(Stockmove.id == stock_move_id)
+    return session.execute(stmt).scalar_one_or_none()
 
 
 def get_all_stock_moves(session: Session):
-    return session.query(Stockmove).all()
+    stmt = select(Stockmove)
+    return session.execute(stmt).scalars().all()
 
 
 def get_stock_moves_by_product(session: Session, product_id: int):
-    return session.query(Stockmove).filter(Stockmove.product_id == product_id).all()
+    stmt = select(Stockmove).where(Stockmove.product_id == product_id)
+    return session.execute(stmt).scalars().all()
 
 
 def get_stock_moves_by_source_warehouse(session: Session, warehouse_id: int):
-    return session.query(Stockmove).filter(Stockmove.source_warehouse_id == warehouse_id).all()
+    stmt = select(Stockmove).where(
+        Stockmove.source_warehouse_id == warehouse_id)
+    return session.execute(stmt).scalars().all()
 
 
 def get_stock_moves_by_destination_warehouse(session: Session, warehouse_id: int):
-    return session.query(Stockmove).filter(Stockmove.destination_warehouse_id == warehouse_id).all()
-
+    stmt = select(Stockmove).where(
+        Stockmove.destination_warehouse_id == warehouse_id)
+    return session.execute(stmt).scalars().all()
