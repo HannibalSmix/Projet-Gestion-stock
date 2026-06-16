@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import select
 
 from models.supplier import Supplier
 
@@ -18,16 +19,20 @@ def create_supplier(session: Session, name: str, email: str):
 
 
 def get_supplier(session: Session, supplier_id: int):
-    return session.get(Supplier, supplier_id)
+    stmt = select(Supplier).where(Supplier.id == supplier_id)
+    return session.execute(stmt).scalar_one_or_none()
 
 
 def get_supplier_by_name(session: Session, name: str):
-    return session.query(Supplier).filter(Supplier.name == name).first()
+    stmt = select(Supplier).where(Supplier.name == name)
+    return session.execute(stmt).scalar_one_or_none()
 
 
 def get_supplier_by_email(session: Session, email: str):
-    return session.query(Supplier).filter(Supplier.email == email).first()
+    stmt = select(Supplier).where(Supplier.email == email)
+    return session.execute(stmt).scalar_one_or_none()
 
 
 def get_all_suppliers(session: Session):
-    return session.query(Supplier).all()
+    stmt = select(Supplier)
+    return session.execute(stmt).scalars().all()
