@@ -36,7 +36,7 @@ def get_stock_by_warehouse(session: Session, warehouse_id: int):
     return session.execute(stmt).scalars().all()
 
 
-def get_stock_by_product_and_warhouse(session: Session, product_id: int, warehouse_id: int):
+def get_stock_by_product_and_warehouse(session: Session, product_id: int, warehouse_id: int):
     stmt = select(Stocklevel).where(Stocklevel.product_id == product_id and Stocklevel.warehouse_id == warehouse_id)
     return session.execute(stmt).scalar_one_or_none()
 

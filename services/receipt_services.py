@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from crud.receipt_crud import get_receipt, update_status
 from crud.receiptline_crud import get_lines_by_receipt
-from crud.stocklevel_crud import get_stock_by_product_and_warhouse, create_stock_level, update_stock_quantity
+from crud.stocklevel_crud import get_stock_by_product_and_warehouse, create_stock_level, update_stock_quantity
 from crud.stockmove_crud import create_stock_move
 from models.receipt import Status
 from models.stockmove import Type
@@ -25,7 +25,7 @@ def validate_receipt(session: Session, receipt_id: int):
     
     for receipt_line in receipt_lines:
         # maj stocklevel
-        stock_level = get_stock_by_product_and_warhouse(
+        stock_level = get_stock_by_product_and_warehouse(
             Session, receipt_line.product_id, receipt.warehouse_id)
         if not stock_level:
             stock_level = create_stock_level(
