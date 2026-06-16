@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
+from sqlalchemy import select
 
 from models.transfert import Transfert, Status
 
@@ -11,7 +12,7 @@ def create_transfert(
     destination_warehouse_id: int,
     status: Status = Status.DRAFT,
     created_at: datetime = None
-    ) :
+):
     
     transfert = Transfert(
         source_warehouse_id=source_warehouse_id,
@@ -30,22 +31,28 @@ def create_transfert(
 
 
 def get_transfert(session: Session, transfert_id: int):
-    return session.get(Transfert, transfert_id)
+    stmt = select(Transfert).where(Transfert.id == transfert_id)
+    return session.execute(stmt).scalar_one_or_none()
 
 
 def get_all_transferts(session: Session):
-    return session.query(Transfert).all()
+    stmt = select(Transfert)
+    return session.execute(stmt).scalars().all()
 
 
 def get_transferts_by_status(session: Session, status: Status):
-    return session.query(Transfert).filter(Transfert.status == status).all()
+    stmt = select(Transfert).where(Transfert.status == status)
+    return session.execute(stmt).scalars().all()
 
 
 def get_transferts_by_source_warehouse(session: Session, warehouse_id: int):
-    return session.query(Transfert).filter(Transfert.source_warehouse_id == warehouse_id).all()
+    stmt = select(Transfert).where(
+        Transfert.source_warehouse_id == warehouse_id)
+    return session.execute(stmt).scalars().all()
 
 
 def get_transferts_by_destination_warehouse(session: Session, warehouse_id: int):
-    return session.query(Transfert).filter(Transfert.destination_warehouse_id == warehouse_id).all()
-
+    stmt = select(Transfert).where(
+        Transfert.destination_warehouse_id == warehouse_id)
+    return session.execute(stmt).scalars().all()
 
