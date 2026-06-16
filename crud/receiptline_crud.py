@@ -14,10 +14,11 @@ def create_receipt_line(session: Session, receipt_id: int, product_id: int, quan
     try:
         session.add(receipt_line)
         session.commit()
+        session.refresh(receipt_line)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(receipt_line)
+    
     return receipt_line
 
 

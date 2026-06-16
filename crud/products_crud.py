@@ -10,11 +10,12 @@ def create_product(session: Session, name: str, sku: str, active: bool = True):
     try:
         session.add(product)
         session.commit()
+        session.refresh(product)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
 
-    session.refresh(product)
+    
 
     return product
 

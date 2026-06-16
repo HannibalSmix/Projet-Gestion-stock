@@ -24,11 +24,11 @@ class Stocklevel(Base):
 
     product: Mapped["Products"] = relationship(
         "Products",
-        back_populates="stockmove"
+        back_populates="stocklevel"
     )
     warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="stockmove"
+        back_populates="stocklevel"
     )
 
     def __repr__(self):

@@ -18,11 +18,11 @@ def create_receipt(session: Session, supplier_id: int, warehouse_id: int, status
     try:
         session.add(receipt)
         session.commit()
+        session.refresh(receipt)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
 
-    session.refresh(receipt)
     return receipt
 
 

@@ -10,10 +10,10 @@ def create_warehouse(session: Session, name: str, location: str):
     try:
         session.add(warehouse)
         session.commit()
+        session.refresh(warehouse)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(warehouse)
     return warehouse
 
 

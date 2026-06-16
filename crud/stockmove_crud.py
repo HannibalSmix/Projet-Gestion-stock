@@ -29,10 +29,11 @@ def create_stock_move(
     try:
         session.add(stock_move)
         session.commit()
+        session.refresh(stock_move)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(stock_move)
+    
     return stock_move
 
 

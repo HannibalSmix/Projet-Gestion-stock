@@ -11,10 +11,10 @@ def create_supplier(session: Session, name: str, email: str):
     try:
         session.add(supplier)
         session.commit()
+        session.refresh(supplier)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(supplier)
     return supplier
 
 

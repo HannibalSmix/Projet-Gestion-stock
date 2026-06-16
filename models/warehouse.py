@@ -20,20 +20,24 @@ class Warehouse(Base):
 
     transfert_source: Mapped["Transfert"] = relationship(
         "Transfert",
-        back_populates="warehouse"
+        foreign_keys="Transfert.source_warehouse_id",
+        back_populates="source_warehouse"
     )
     transfert_destination: Mapped["Transfert"] = relationship(
         "Transfert",
-        back_populates="warehouse"
+        foreign_keys="Transfert.destination_warehouse_id",
+        back_populates="destination_warehouse"
     )
 
     stockmove_source: Mapped["Stockmove"] = relationship(
         "Stockmove",
-        back_populates="warehouse"
+        foreign_keys="Stockmove.source_warehouse_id",
+        back_populates="source_warehouse"
     )
     stockmove_destination: Mapped["Stockmove"] = relationship(
         "Stockmove",
-        back_populates="warehouse"
+        foreign_keys="Stockmove.destination_warehouse_id",
+        back_populates="destination_warehouse"
     )
     stocklevel: Mapped["Stocklevel"] = relationship(
         "Stocklevel",
@@ -41,7 +45,7 @@ class Warehouse(Base):
     )
     receipt: Mapped["Receipt"] = relationship(
         "Receipt",
-        back_populates="Warehouse"
+        back_populates="warehouse"
     )
 
     def __repr__(self):

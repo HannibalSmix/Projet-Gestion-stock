@@ -14,10 +14,11 @@ def create_stock_level(session: Session, product_id: int, warehouse_id: int, qua
     try:
         session.add(stock_level)
         session.commit()
+        session.refresh(stock_level)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(stock_level)
+    
     return stock_level
 
 

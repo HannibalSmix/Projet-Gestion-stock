@@ -21,22 +21,22 @@ class Products(Base):
 
     transfertline: Mapped["TransfertLine"] = relationship(
         "TransfertLine",
-        back_populates="products"
+        back_populates="product"
     )
 
     stockmove: Mapped["Stockmove"] = relationship(
         "Stockmove",
-        back_populates="products"
+        back_populates="product"
     )
 
     stocklevel: Mapped["Stocklevel"] = relationship(
         "Stocklevel", 
-        back_populates="products"
+        back_populates="product"
     )
 
     receiptline: Mapped["ReceiptLine"] = relationship(
         "ReceiptLine",
-        back_populates="products"
+        back_populates="product"
     )
 
     def __repr__(self):

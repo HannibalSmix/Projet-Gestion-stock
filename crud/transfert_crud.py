@@ -23,10 +23,11 @@ def create_transfert(
     try:
         session.add(transfert)
         session.commit()
+        session.refresh(transfert)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(transfert)
+    
     return transfert
 
 

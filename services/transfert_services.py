@@ -4,7 +4,7 @@ from crud.transfert_crud import get_transfert, update_status
 from crud.transfertline_crud import get_lines_by_transfert
 from crud.stocklevel_crud import get_stock_by_product_and_warehouse, create_stock_level, update_quantity
 from crud.stockmove_crud import create_stock_move
-from models.stockmove import Status, Type
+from models.stockmove import Status as MoveStatus, Type
 
 
 def validate_transfert(session: Session, transfert_id: int):
@@ -45,8 +45,7 @@ def validate_transfert(session: Session, transfert_id: int):
 
         # Take from source warehouse
         update_quantity(session, 
-                        transfert_line.product_id,
-                        transfert.source_warehouse_id,
+                        transfert_line.id,
                         -transfert_line.quantity)
 
         # put in source warehouse
@@ -57,8 +56,7 @@ def validate_transfert(session: Session, transfert_id: int):
         
         if stock_level_dest:
             update_quantity(session, 
-                            transfert_line.product_id,
-                            transfert.destination_warehouse_id, 
+                            transfert_line.id,
                             transfert_line.quantity)
         else:
             create_stock_level( session, 
@@ -74,7 +72,7 @@ def validate_transfert(session: Session, transfert_id: int):
             transfert.source_warehouse_id,
             transfert.destination_warehouse_id,
             Type.TRANSFER,
-            Status.DONE
+            MoveStatus.DONE
         )
 
     update_status(session, transfert_id, Status.DONE)

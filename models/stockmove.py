@@ -38,11 +38,13 @@ class Stockmove(Base):
    
     source_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="stockmove"
+        foreign_keys=[source_warehouse_id],
+        back_populates="stockmove_source"
     )
     destination_warehouse: Mapped["Warehouse"] = relationship(
         "Warehouse",
-        back_populates="stockmove"
+        foreign_keys=[destination_warehouse_id],
+        back_populates="stockmove_destination"
     )
     product: Mapped["Products"] = relationship(
         "Products",

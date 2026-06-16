@@ -20,10 +20,11 @@ def create_transfert_line(
     try:
         session.add(transfert_line)
         session.commit()
+        session.refresh(transfert_line)
     except IntegrityError as e:
         session.rollback()
         print(f"Erreur : {e.orig}")
-    session.refresh(transfert_line)
+    
     return transfert_line
 
 
