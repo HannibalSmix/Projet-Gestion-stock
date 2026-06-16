@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import select
 
 from models.stocklevel import Stocklevel
 
@@ -21,12 +22,15 @@ def create_stock_level(session: Session, product_id: int, warehouse_id: int, qua
 
 
 def get_stock_level(session: Session, stock_level_id: int):
-    return session.get(Stocklevel, stock_level_id)
+    stmt = select(Stocklevel).where(Stocklevel.id == stock_level_id)
+    return session.execute(stmt).scalar_one_or_none()
+
 
 def get_stock_by_product(session: Session, product_id: int):
-    return session.query(Stocklevel).filter(Stocklevel.product_id == product_id).all()
+    stmt = select(Stocklevel).where(Stocklevel.product_id == product_id)
+    return session.execute(stmt).scalars().all()
 
 
 def get_stock_by_warehouse(session: Session, warehouse_id: int):
-    return session.query(Stocklevel).filter(Stocklevel.warehouse_id == warehouse_id).all()
-
+    stmt = select(Stocklevel).where(Stocklevel.warehouse_id == warehouse_id)
+    return session.execute(stmt).scalars().all()
