@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
+from sqlalchemy import select
 
 from models.receipt import Receipt, Status
 
@@ -25,10 +26,15 @@ def create_receipt(session: Session, supplier_id: int, warehouse_id: int, status
     return receipt
 
 def get_receipt(session: Session, receipt_id: int):
-    return session.get(Receipt, receipt_id)
+    stmt = select(Receipt).where(Receipt.id == receipt_id)
+    return session.execute(stmt).scalar_one_or_none()
+
 
 def get_receipts_by_supplier(session: Session, supplier_id: int):
-    return session.query(Receipt).filter(Receipt.supplier_id == supplier_id).all()
+    stmt = select(Receipt).where(Receipt.supplier_id == supplier_id)
+    return session.execute(stmt).scalars().all()
+
 
 def get_receipts_by_warehouse(session: Session, warehouse_id: int) -> list[Receipt]:
-    return session.query(Receipt).filter(Receipt.warehouse_id == warehouse_id).all()
+    stmt = select(Receipt).where(Receipt.warehouse_id == warehouse_id)
+    return session.execute(stmt).scalars().all()
