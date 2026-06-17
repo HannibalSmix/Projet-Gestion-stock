@@ -1,0 +1,14 @@
+id,product,warehouse,quantity
+7,Écrou M6,Entrepôt Marseille,400
+8,Écrou M8,Entrepôt Marseille,400
+9,Rondelle M6,Entrepôt Marseille,600
+10,Rondelle M10,Entrepôt Marseille,600
+11,Tube rond 25mm,Entrepôt Lille,50
+12,Profilé en U 30mm,Entrepôt Lille,50
+13,Ressort de compression,Entrepôt Lille,200
+1,Vis M6 x 20mm,Entrepôt Paris,500
+2,Vis M8 x 30mm,Entrepôt Paris,300
+3,Boulon M10,Entrepôt Paris,200
+4,Plaque acier 2mm,Entrepôt Lyon,100
+5,Plaque acier 5mm,Entrepôt Lyon,80
+6,Tube carré 20x20,Entrepôt Lyon,60

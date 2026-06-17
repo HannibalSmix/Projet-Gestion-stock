@@ -25,7 +25,6 @@ class TransfertLine(Base):
         CheckConstraint("quantity >= 0", name="check_quantity_positive"),
     )
 
-
     transfer: Mapped["Transfert"] = relationship(
         "Transfert",
         back_populates="transfertline"

@@ -8,6 +8,7 @@ from crud.receiptline_crud import get_all_receiptlines
 from crud.stockmove_crud import get_all_stock_moves
 from crud.transfert_crud import get_all_transferts, get_transfert
 from crud.transfertline_crud import get_all_transfert_line
+from crud.stocklevel_crud import get_all_stock_level
 
 
 def export_suppliers_to_csv(session: Session, filepath: str = "exports/suppliers.csv"):
@@ -161,3 +162,21 @@ def export_transfertline_to_csv(session: Session, filepath: str = "exports/trans
 
     print(f"{len(transfert_lines)} transfert lines exportés dans {filepath}")
 
+
+def export_stocklevel_to_csv(session: Session, filepath: str = "exports/stocklevel.csv"):
+
+    stock_levels = get_all_stock_level(session)
+
+    with open(filepath, mode="w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+
+        # En-têtes
+        writer.writerow(["id", "product", "warehouse", "quantity"])
+
+        # Données
+        for stock in stock_levels:
+            product = get_product(session, stock.product_id)
+            warehouse = get_warehouse(session, stock.warehouse_id)
+            writer.writerow([stock.id, product.name, warehouse.name, stock.quantity])
+
+    print(f"{len(stock_levels)} niveaux de stock exportés dans {filepath}")

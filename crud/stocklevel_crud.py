@@ -27,6 +27,11 @@ def get_stock_level(session: Session, stock_level_id: int):
     return session.execute(stmt).scalar_one_or_none()
 
 
+def get_all_stock_level(session: Session):
+    stmt = select(Stocklevel)
+    return session.execute(stmt).scalars().all()
+
+
 def get_stock_by_product(session: Session, product_id: int):
     stmt = select(Stocklevel).where(Stocklevel.product_id == product_id)
     return session.execute(stmt).scalars().all()

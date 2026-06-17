@@ -8,7 +8,8 @@ from utils.export_csv import (
             export_receiptline_to_csv,
             export_stockmove_to_csv,
             export_transfert_to_csv,
-            export_transfertline_to_csv)
+            export_transfertline_to_csv,
+            export_stocklevel_to_csv)
 
 # Base.metadata.create_all(engine)
 
@@ -22,5 +23,6 @@ with SessionLocal() as session:
     # export_receiptline_to_csv(session)
     # export_stockmove_to_csv(session)
     # export_transfert_to_csv(session)
-    export_transfertline_to_csv(session)
+    # export_transfertline_to_csv(session)
+    export_stocklevel_to_csv(session)
     print('Done')
