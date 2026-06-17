@@ -35,3 +35,8 @@ def get_lines_by_receipt(session: Session, receipt_id: int) -> list[ReceiptLine]
 def get_lines_by_product(session: Session, product_id: int) -> list[ReceiptLine]:
     stmt = select(ReceiptLine).where(ReceiptLine.product_id == product_id)
     return session.execute(stmt).scalars().all()
+
+
+def get_all_receiptlines(session: Session):
+    stmt = select(ReceiptLine)
+    return session.execute(stmt).scalars().all()

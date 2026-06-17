@@ -1,0 +1,18 @@
+id,receipt supplier,receipt warehouse,product,quantity
+1,Acier Pro,Entrepôt Paris,Vis M6 x 20mm,500
+2,Acier Pro,Entrepôt Paris,Vis M8 x 30mm,300
+3,Acier Pro,Entrepôt Paris,Boulon M10,200
+4,MetalTech,Entrepôt Lyon,Plaque acier 2mm,100
+5,MetalTech,Entrepôt Lyon,Plaque acier 5mm,80
+6,MetalTech,Entrepôt Lyon,Tube carré 20x20,60
+7,Visserie Dupont,Entrepôt Marseille,Écrou M6,400
+8,Visserie Dupont,Entrepôt Marseille,Écrou M8,400
+9,Visserie Dupont,Entrepôt Marseille,Rondelle M6,600
+10,Visserie Dupont,Entrepôt Marseille,Rondelle M10,600
+11,Industrie Leblanc,Entrepôt Lille,Tube rond 25mm,50
+12,Industrie Leblanc,Entrepôt Lille,Profilé en U 30mm,50
+13,Industrie Leblanc,Entrepôt Lille,Ressort de compression,200
+14,Fournitures BCG,Entrepôt Paris,Goupille 4mm,300
+15,Fournitures BCG,Entrepôt Paris,Clip de fixation,300
+16,Fournitures BCG,Entrepôt Paris,Joint torique 10mm,150
+17,Fournitures BCG,Entrepôt Paris,Câble acier 3mm,100

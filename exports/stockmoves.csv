@@ -1,0 +1,20 @@
+id,product,warehouse source,warehouse destination,type,status,created_at
+1,Vis M6 x 20mm,Entrepôt Paris,Entrepôt Paris,Type.IN,Status.DONE,17/06/2026 08:42:11
+2,Vis M8 x 30mm,Entrepôt Paris,Entrepôt Paris,Type.IN,Status.DONE,17/06/2026 08:42:11
+3,Boulon M10,Entrepôt Paris,Entrepôt Paris,Type.IN,Status.DONE,17/06/2026 08:42:11
+4,Plaque acier 2mm,Entrepôt Lyon,Entrepôt Lyon,Type.IN,Status.DONE,17/06/2026 08:42:11
+5,Plaque acier 5mm,Entrepôt Lyon,Entrepôt Lyon,Type.IN,Status.DONE,17/06/2026 08:42:11
+6,Tube carré 20x20,Entrepôt Lyon,Entrepôt Lyon,Type.IN,Status.DONE,17/06/2026 08:42:11
+7,Écrou M6,Entrepôt Marseille,Entrepôt Marseille,Type.IN,Status.DONE,17/06/2026 08:42:11
+8,Écrou M8,Entrepôt Marseille,Entrepôt Marseille,Type.IN,Status.DONE,17/06/2026 08:42:11
+9,Rondelle M6,Entrepôt Marseille,Entrepôt Marseille,Type.IN,Status.DONE,17/06/2026 08:42:11
+10,Rondelle M10,Entrepôt Marseille,Entrepôt Marseille,Type.IN,Status.DONE,17/06/2026 08:42:11
+11,Tube rond 25mm,Entrepôt Lille,Entrepôt Lille,Type.IN,Status.DONE,17/06/2026 08:42:11
+12,Profilé en U 30mm,Entrepôt Lille,Entrepôt Lille,Type.IN,Status.DONE,17/06/2026 08:42:11
+13,Ressort de compression,Entrepôt Lille,Entrepôt Lille,Type.IN,Status.DONE,17/06/2026 08:42:11
+14,Vis M6 x 20mm,Entrepôt Paris,Entrepôt Paris,Type.TRANSFER,Status.DONE,17/06/2026 08:42:11
+15,Vis M8 x 30mm,Entrepôt Paris,Entrepôt Paris,Type.TRANSFER,Status.DONE,17/06/2026 08:42:11
+16,Plaque acier 2mm,Entrepôt Lyon,Entrepôt Lyon,Type.TRANSFER,Status.DONE,17/06/2026 08:42:11
+17,Plaque acier 5mm,Entrepôt Lyon,Entrepôt Lyon,Type.TRANSFER,Status.DONE,17/06/2026 08:42:11
+18,Écrou M6,Entrepôt Marseille,Entrepôt Marseille,Type.TRANSFER,Status.DONE,17/06/2026 08:42:11
+19,Rondelle M6,Entrepôt Marseille,Entrepôt Marseille,Type.TRANSFER,Status.DONE,17/06/2026 08:42:11

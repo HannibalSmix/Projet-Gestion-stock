@@ -41,3 +41,8 @@ def get_lines_by_transfert(session: Session, transfer_id: int):
 def get_lines_by_product(session: Session, product_id: int):
     stmt = select(TransfertLine).where(TransfertLine.product_id == product_id)
     return session.execute(stmt).scalars().all()
+
+
+def get_all_transfert_line(session: Session):
+    stmt = select(TransfertLine)
+    return session.execute(stmt).scalars().all()

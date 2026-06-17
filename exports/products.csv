@@ -1,0 +1,21 @@
+id,name,sku,active
+1,Vis M6 x 20mm,VIS-M6-20,True
+2,Vis M8 x 30mm,VIS-M8-30,True
+3,Boulon M10,BOU-M10,True
+4,Écrou M6,ECR-M6,True
+5,Écrou M8,ECR-M8,True
+6,Rondelle M6,RON-M6,True
+7,Rondelle M10,RON-M10,True
+8,Cheville 8mm,CHE-8MM,True
+9,Cheville 10mm,CHE-10MM,True
+10,Tige filetée M12,TIG-M12,True
+11,Plaque acier 2mm,PLA-AC-2,True
+12,Plaque acier 5mm,PLA-AC-5,True
+13,Tube carré 20x20,TUB-CA-20,True
+14,Tube rond 25mm,TUB-RO-25,True
+15,Profilé en U 30mm,PRO-U-30,True
+16,Ressort de compression,RES-COMP,True
+17,Goupille 4mm,GOP-4MM,True
+18,Clip de fixation,CLI-FIX,True
+19,Joint torique 10mm,JOI-TO-10,True
+20,Câble acier 3mm,CAB-AC-3,True

@@ -1,0 +1,9 @@
+id,transfert id,product,quantity,Warehouse source,Warehouse destination
+1,1,Vis M6 x 20mm,100,Entrepôt Paris,Entrepôt Lyon
+2,1,Vis M8 x 30mm,50,Entrepôt Paris,Entrepôt Lyon
+3,2,Plaque acier 2mm,30,Entrepôt Lyon,Entrepôt Marseille
+4,2,Plaque acier 5mm,20,Entrepôt Lyon,Entrepôt Marseille
+5,3,Écrou M6,100,Entrepôt Marseille,Entrepôt Lille
+6,3,Rondelle M6,150,Entrepôt Marseille,Entrepôt Lille
+7,4,Boulon M10,50,Entrepôt Paris,Entrepôt Lille
+8,4,Cheville 8mm,80,Entrepôt Paris,Entrepôt Lille

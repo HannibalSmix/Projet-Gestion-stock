@@ -1,0 +1,6 @@
+id,supplier,warehouse,status,created_at
+1,Acier Pro,Entrepôt Paris,Status.DONE,17/06/2026 08:42:11
+2,MetalTech,Entrepôt Lyon,Status.DONE,17/06/2026 08:42:11
+3,Visserie Dupont,Entrepôt Marseille,Status.DONE,17/06/2026 08:42:11
+4,Industrie Leblanc,Entrepôt Lille,Status.DONE,17/06/2026 08:42:11
+5,Fournitures BCG,Entrepôt Paris,Status.DRAFT,17/06/2026 08:42:11

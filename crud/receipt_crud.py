@@ -31,6 +31,11 @@ def get_receipt(session: Session, receipt_id: int):
     return session.execute(stmt).scalar_one_or_none()
 
 
+def get_all_receipts(session: Session):
+    stmt = select(Receipt)
+    return session.execute(stmt).scalars().all()
+
+
 def get_receipts_by_supplier(session: Session, supplier_id: int):
     stmt = select(Receipt).where(Receipt.supplier_id == supplier_id)
     return session.execute(stmt).scalars().all()

@@ -15,17 +15,23 @@ def create_product(session: Session, name: str, sku: str, active: bool = True):
         session.rollback()
         print(f"Erreur : {e.orig}")
 
-    
-
     return product
+
 
 def get_product(session: Session, product_id: int):
     stmt = select(Products).where(Products.id == product_id)
     return session.execute(stmt).scalar_one_or_none()
 
+
+def get_all_products(session: Session):
+    stmt = select(Products)
+    return session.execute(stmt).scalars().all()
+
+
 def get_product_by_sku(session: Session, sku: str):
     stmt = select(Products).where(Products.sku == sku)
     return session.execute(stmt).scalar_one_or_none()
+
 
 def deactivate_product(session: Session, product_id: int):
     
